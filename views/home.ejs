@@ -1,0 +1,18 @@
+<%- include('partials/header', { title: 'Homepage' }) %>
+<!-- Navigation -->
+<%- include('partials/navbar') %>
+
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h1>Welcome to UniMan</h1>
+      <p class="lead">
+        You are currently logged in as <strong><%if (typeof username != "undefined") { %> <%= username || '?' %> <% } %></strong>
+      </p>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+
+<%- include('partials/footer') %>

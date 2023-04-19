@@ -1,0 +1,55 @@
+<%- include('partials/header', { title: 'Login' }) %>
+<div class="container text-center my-5">
+
+  <div class="row g-2 my-2 align-items-center justify-content-center text-primary">
+    <div class="col-auto"><i class="fa-sharp fa-solid fa-graduation-cap fa-xl"></i></div>
+    <div class="col-auto">
+      <h3>UniMan</h3>
+    </div>
+  </div>
+
+  <h3>Login</h3>
+
+  <div class="row g-3 my-1 align-items-center justify-content-center">
+    <div class="col-auto">
+      <label class="col-form-label">Username</label>
+    </div>
+    <div class="col-auto">
+      <input id="inputUsername" class="form-control">
+    </div>
+  </div>
+  <div class="row g-3 my-1 align-items-center justify-content-center">
+    <div class="col-auto">
+      <label class="col-form-label">Password</label>
+    </div>
+    <div class="col-auto">
+      <input type="password" id="inputPassword" class="form-control">
+    </div>
+  </div>
+
+  <button id="buttonLogin" type="button" class="btn btn-primary my-3">Login</button>
+
+</div>
+
+<script>
+  $('#buttonLogin').click(function() {
+    const username = $('#inputUsername').val();
+    const password = $('#inputPassword').val();
+
+    $.post({
+      url: '/api/login',
+      dataType: "json",
+      data: {
+        username: $('#inputUsername').val(),
+        password: $('#inputPassword').val()
+      },
+      success: function(data) {
+        window.location.replace("/");
+      },
+      error: (xhr, status, err) => {
+        alert($.parseJSON(xhr.responseText).message);
+      }
+    });
+  });
+</script>
+<%- include('partials/footer') %>
