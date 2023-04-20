@@ -11,7 +11,8 @@ export const login = handleAsync(async (req: AppRequest, res: Response) => {
       .status(400)
       .json({ message: 'Username and password are required' });
   }
-  await getConnection(username, password);
+  const conn = await getConnection(username, password);
+  conn.close();
   req.session.username = username;
   req.session.password = password;
   return res.json({ message: 'Logged in successfully' });
