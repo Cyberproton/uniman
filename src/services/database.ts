@@ -1,6 +1,9 @@
 import oracledb from 'oracledb';
 
-export const CONNECTION_STRING = 'localhost/EE';
+const DATABASE_HOST = process.env.DATABASE_HOST || 'localhost';
+const DATABASE_PORT = process.env.DATABASE_PORT || 1521;
+const DATABASE_SID = process.env.DATABASE_SID || 'orcl';
+const CONNECTION_STRING = `${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_SID}`;
 
 export const getConnection = async (
   username: string,
