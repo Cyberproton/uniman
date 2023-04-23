@@ -3,7 +3,7 @@ import { validateAuth } from '../middlewares';
 
 const viewRouter = Router();
 
-viewRouter.get('/', validateAuth, (req, res) => {
+viewRouter.get('/', (req, res) => {
   return res.render('home');
 });
 

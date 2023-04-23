@@ -5,6 +5,7 @@ import express from 'express';
 import session from 'express-session';
 import { errorHandler } from './errors';
 import router from './routes';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(
   }),
 );
 app.use(cookieParser());
+app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
