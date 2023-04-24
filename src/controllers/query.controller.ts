@@ -8,8 +8,8 @@ export const query = handleAsync(
     const query = req.body.query;
     console.log(`User ${req.username} is executing ${query}`);
     const conn = await getConnection(req.username!, req.password!);
-    const result = await conn.execute(query);
-    conn.close();
+    const result = await conn.execute(String(query));
+    await conn.close();
     res.json(result);
   },
 );

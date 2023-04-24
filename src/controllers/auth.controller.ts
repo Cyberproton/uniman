@@ -7,7 +7,6 @@ import { Connection } from 'oracledb';
 export const login = handleAsync(async (req: AppRequest, res: Response) => {
   const username = req.body.username;
   const password = req.body.password;
-  console.log(username, password);
   if (!username || !password) {
     return res
       .status(400)
@@ -18,9 +17,9 @@ export const login = handleAsync(async (req: AppRequest, res: Response) => {
     conn = await getConnection(username, password);
   } catch (err) {
     return res.status(400).json({ message: 'Wrong username or password' });
+  } finally {
+    await conn.close();
   }
-  req.session.username = username;
-  req.session.password = password;
   console.log(`User logged in with username ${username}, password ${password}`);
   return res.json({ message: 'Logged in successfully' });
 });

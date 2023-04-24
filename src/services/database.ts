@@ -4,6 +4,7 @@ const DATABASE_HOST = process.env.DATABASE_HOST || 'localhost';
 const DATABASE_PORT = process.env.DATABASE_PORT || 1521;
 const DATABASE_SID = process.env.DATABASE_SID || 'orcl';
 const CONNECTION_STRING = `${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_SID}`;
+oracledb.autoCommit = true;
 
 export interface ConnectionOptions {
   username: string;
@@ -25,7 +26,7 @@ export const getConnection = async (
 };
 
 export const getConnectionAndExecute = async (
-  func: (connection: oracledb.Connection) => unknown | Promise<unknown>, 
+  func: (connection: oracledb.Connection) => unknown | Promise<unknown>,
   options: ConnectionOptions,
 ) => {
   const username = options.username;
@@ -42,4 +43,4 @@ export const getConnectionAndExecute = async (
   await func(connection);
 
   connection.close();
-}
+};

@@ -12,15 +12,6 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(
-  session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false },
-  }),
-);
-app.use(cookieParser());
 app.use(cors());
 
 // parse application/x-www-form-urlencoded
